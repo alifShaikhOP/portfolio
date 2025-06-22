@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alif Shaikh - Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Comic Book Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: 'Bangers', cursive, Arial, sans-serif;
+      background: #EDD5BD;
+      color: #575451;
+      overflow-x: hidden;
+    }
+    body {
+      min-height: 100vh;
+      background: repeating-linear-gradient(135deg, #EDD5BD 0 40px, #F99273 40px 80px, #EDD5BD 80px 120px, #61AAB3 120px 160px);
+    }
+    nav {
+      background: #61AAB3;
+      border-right: 8px solid #575451;
+      width: 60px;
+      height: 100vh;
+      position: fixed;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding-top: 2rem;
+      transition: width 0.3s;
+      overflow: hidden;
+      z-index: 1002;
+      box-shadow: 8px 0 0 #F99273, 0 0 0 8px #575451;
+    }
+    nav:hover {
+      width: 220px;
+      background: #F99273;
+    }
+    nav a {
+      color: #575451;
+      margin: 1rem 0;
+      text-decoration: none;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      padding: 0.7rem 1.2rem;
+      width: 100%;
+      white-space: nowrap;
+      border-radius: 18px 0 0 18px;
+      font-family: 'Bangers', cursive, Arial, sans-serif;
+      letter-spacing: 1px;
+      box-shadow: 2px 2px 0 #575451;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    }
+    nav a i {
+      margin-right: 1rem;
+      font-size: 1.5em;
+    }
+    nav a:hover {
+      background: #EDD5BD;
+      color: #F99273;
+      box-shadow: 4px 4px 0 #575451;
+    }
+    .download-btn {
+      margin: 1rem;
+      color: #EDD5BD;
+      background: #575451;
+      border: 3px solid #F99273;
+      padding: 0.7rem 1.5rem;
+      border-radius: 18px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-family: 'Bangers', cursive, Arial, sans-serif;
+      letter-spacing: 1px;
+      box-shadow: 2px 2px 0 #F99273;
+      opacity: 0;
+      transition: opacity 0.3s, background 0.3s, color 0.3s;
+    }
+    nav:hover .download-btn {
+      opacity: 1;
+    }
+    .download-btn:hover {
+      background: #F99273;
+      color: #EDD5BD;
+      box-shadow: 4px 4px 0 #575451;
+    }
+    main {
+      margin-left: 80px;
+      width: calc(100% - 80px);
+      transition: margin-left 0.3s, width 0.3s;
+    }
+    nav:hover + main {
+      margin-left: 240px;
+      width: calc(100% - 240px);
+    }
+    header {
+      background: url('./imgs/pexels-andrew-2859169.jpg') no-repeat center/cover;
+      height: 32vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #F99273;
+      text-shadow: 3px 3px 0 #EDD5BD, 6px 6px 0 #575451;
+      border-bottom: 8px solid #575451;
+      border-radius: 0 0 32px 32px;
+      box-shadow: 0 8px 0 #F99273;
+      filter: sepia(0.2) saturate(1.2);
+    }
+    header h1 {
+      font-size: 3.5rem;
+      text-align: center;
+      color: #F99273;
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      color: #575451;
+      font-size: 2rem;
+      text-shadow: 2px 2px 0 #EDD5BD, 4px 4px 0 #575451;
+    }
+    section {
+      padding: 3rem 2rem;
+      max-width: 1000px;
+      margin: 2rem auto;
+      background: #EDD5BD;
+      border: 6px solid #575451;
+      border-radius: 24px;
+      box-shadow: 8px 8px 0 #F99273, 0 0 0 8px #575451;
+      position: relative;
+      z-index: 1;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2.5rem;
+      color: #F99273;
+      text-shadow: 2px 2px 0 #EDD5BD, 4px 4px 0 #575451;
+      letter-spacing: 2px;
+    }
+    .skills-marquee {
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      height: 110px;
+      margin-top: 2rem;
+      background: #61AAB3;
+      border: 4px solid #575451;
+      border-radius: 18px;
+      box-shadow: 4px 4px 0 #F99273;
+      display: flex;
+      align-items: center;
+    }
+    .marquee-content {
+      display: flex;
+      gap: 3rem;
+      position: absolute;
+      animation: scroll-left 18s linear infinite;
+      align-items: center;
+    }
+    .skill-logo img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50px;
+      filter: grayscale(100%);
+      transition: filter 0.3s, transform 0.3s;
+      border: 3px solid #575451;
+      box-shadow: 2px 2px 0 #F99273;
+      background: #EDD5BD;
+    }
+    .skill-logo img:hover {
+      filter: grayscale(0%);
+      transform: scale(1.15) rotate(-5deg);
+      box-shadow: 4px 4px 0 #575451;
+    }
+    @keyframes scroll-left {
+      0% { transform: translateX(100%);}
+      100% { transform: translateX(-100%);}
+    }
+    .card {
+      background: #61AAB3;
+      border-radius: 18px;
+      padding: 1.5rem;
+      box-shadow: 4px 4px 0 #575451, 0 0 0 4px #F99273;
+      border: 4px solid #575451;
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      perspective: 1000px;
+      font-size: 1.2em;
+      color: #575451;
+    }
+    .card:hover {
+      transform: translateY(-10px) scale(1.03) rotate(-2deg);
+      box-shadow: 8px 8px 0 #F99273;
+    }
+    .card-front {
+      background: #61AAB3;
+    }
+    .card-back {
+      background: #EDD5BD;
+    }
+    .timeline-container {
+      width: 90%;
+      margin: auto;
+    }
+    .timeline-row {
+      border: 3px solid #575451;
+      margin-bottom: 18px;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 3px 3px 0 #F99273;
+      overflow: hidden;
+    }
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem;
+      cursor: pointer;
+      background: #61AAB3;
+      color: #575451;
+      font-size: 1.2em;
+      font-family: 'Bangers', cursive, Arial, sans-serif;
+      border-bottom: 2px solid #575451;
+    }
+    .timeline-header > div {
+      flex: 1;
+      font-weight: bold;
+    }
+    .toggle-btn {
+      background: #F99273;
+      border: 2px solid #575451;
+      color: #EDD5BD;
+      font-size: 1.3rem;
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 2px 2px 0 #575451;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    }
+    .toggle-btn:hover {
+      background: #EDD5BD;
+      color: #F99273;
+      box-shadow: 4px 4px 0 #575451;
+    }
+    .timeline-details {
+      display: none;
+      padding: 1.2rem;
+      background: #EDD5BD;
+      color: #575451;
+      font-size: 1.1em;
+      border-top: 2px solid #575451;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #F99273;
+      color: #EDD5BD;
+      margin-top: 2rem;
+      border-top: 8px solid #575451;
+      font-size: 1.2em;
+      letter-spacing: 1px;
+      box-shadow: 0 -8px 0 #575451;
+    }
+    /* Contact icons comic style */
+    #contact a {
+      color: #F99273;
+      background: #EDD5BD;
+      border: 3px solid #575451;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin: 0 1rem;
+      box-shadow: 2px 2px 0 #575451;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    #contact a:hover {
+      background: #F99273;
+      color: #EDD5BD;
+      box-shadow: 4px 4px 0 #575451;
+      transform: scale(1.15) rotate(-5deg);
+    }
+    /* Toggle Button Comic Style */
+    .toggle-btn.theme-toggle {
+      position: fixed;
+      bottom: 2.5rem;
+      right: 2.5rem;
+      width: 60px;
+      height: 60px;
+      background: #EDD5BD;
+      color: #F99273;
+      border: 4px solid #575451;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 4px 4px 0 #F99273;
+      font-size: 2rem;
+      z-index: 2000;
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s, transform 0.3s;
+    }
+    .toggle-btn.theme-toggle:hover {
+      background: #F99273;
+      color: #EDD5BD;
+      box-shadow: 8px 8px 0 #575451;
+      transform: scale(1.1) rotate(-5deg);
+    }
+    /* Responsive Design */
+    @media (max-width: 900px) {
+      nav, nav:hover {
+        width: 100vw;
+        height: auto;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 1rem 0;
+        border-radius: 0;
+        box-shadow: none;
+        border-right: none;
+        border-bottom: 8px solid #575451;
+      }
+      main, nav:hover + main {
+        margin-left: 0;
+        width: 100vw;
+      }
+      header {
+        height: 20vh;
+        border-radius: 0;
+      }
+      section {
+        margin: 1rem 0;
+        border-radius: 0;
+      }
+      .skills-marquee {
+        border-radius: 0;
+      }
+    }
+    @media (max-width: 600px) {
+      header h1 { font-size: 2rem; }
+      .section-title { font-size: 1.3rem; }
+      .skills-marquee { height: 70px; }
+      .skill-logo img { width: 50px; height: 50px; }
+      .toggle-btn.theme-toggle { width: 44px; height: 44px; font-size: 1.3rem; }
+    }
+    /* Comic bubble for notifications */
+    .comic-bubble {
+      background: #EDD5BD;
+      border: 3px solid #575451;
+      color: #575451;
+      box-shadow: 3px 3px 0 #575451;
+    }
+    .comic-bubble:after {
+      border-top: 18px solid #575451;
+    }
+    /* Dark Mode Comic Style */
+    body.dark-mode {
+      background: repeating-linear-gradient(135deg, #575451 0 40px, #444 40px 80px, #575451 80px 120px, #F99273 120px 160px);
+      color: #EDD5BD;
+    }
+    nav.dark-mode {
+      background: #575451;
+      border-right: 8px solid #F99273;
+    }
+    nav.dark-mode a {
+      color: #EDD5BD;
+    }
+    nav.dark-mode a:hover {
+      background: #F99273;
+      color: #EDD5BD;
+      box-shadow: 4px 4px 0 #EDD5BD;
+    }
+    .card.dark-mode {
+      background: #575451;
+      color: #EDD5BD;
+      border: 4px solid #F99273;
+      box-shadow: 4px 4px 0 #EDD5BD;
+    }
+    footer.dark-mode {
+      background: #575451;
+      color: #F99273;
+      border-top: 8px solid #F99273;
+      box-shadow: 0 -8px 0 #F99273;
+    }
+    body.dark-mode .section-title {
+      color: #EDD5BD;
+      text-shadow: 2px 2px 0 #F99273, 4px 4px 0 #575451;
+    }
+    section.dark-mode {
+      background: #575451;
+      border: 6px solid #F99273;
+      box-shadow: 8px 8px 0 #EDD5BD, 0 0 0 8px #F99273;
+    }
+    .timeline-row.dark-mode {
+      background: #444;
+      border: 3px solid #F99273;
+      box-shadow: 3px 3px 0 #EDD5BD;
+    }
+    .timeline-header.dark-mode {
+      background: #F99273;
+      color: #EDD5BD;
+      border-bottom: 2px solid #EDD5BD;
+    }
+    .timeline-details.dark-mode {
+      background: #575451;
+      color: #EDD5BD;
+      border-top: 2px solid #EDD5BD;
+    }
+    .toggle-btn.dark-mode {
+      background: #EDD5BD;
+      color: #F99273;
+      border: 2px solid #F99273;
+      box-shadow: 2px 2px 0 #EDD5BD;
+    }
+    .toggle-btn.dark-mode:hover {
+      background: #F99273;
+      color: #EDD5BD;
+      box-shadow: 4px 4px 0 #EDD5BD;
+    }
+    .skills-marquee.dark-mode {
+      background: #F99273;
+      border: 4px solid #EDD5BD;
+      box-shadow: 4px 4px 0 #575451;
+    }
+    .skill-logo img.dark-mode {
+      background: #F99273;
+      border: 3px solid #EDD5BD;
+      box-shadow: 2px 2px 0 #575451;
+    }
+    .comic-bubble.dark-mode {
+      background: #F99273;
+      color: #EDD5BD;
+      border: 3px solid #EDD5BD;
+      box-shadow: 3px 3px 0 #EDD5BD;
+    }
+    .comic-bubble.dark-mode:after {
+      border-top: 18px solid #EDD5BD;
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <div>
+    <a href="#about"><i class="fas fa-user"></i> About</a>
+    <a href="#skills"><i class="fas fa-tools"></i> Skills</a>
+    <a href="#experience"><i class="fas fa-briefcase"></i> Experience</a>
+    <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+  </div>
+  <button class="download-btn" onclick="downloadPortfolio()"><i class="fa-solid fa-download"></i> Download</button>
+</nav>
+<main id="portfolio">
+  <header>
+    <div style="text-align: center;">
+      <h1>Alif Shaikh</h1>
+      <p>GIS Developer</p>
+    </div>
+  </header>
+  <section id="about">
+    <h2 class="section-title"><i class="fas fa-compass"></i> About Me</h2>
+    <div class="comic-bubble" style="margin:auto;display:block;">
+      I'm a GIS Developer with 13 years of experience specializing in mapping applications using ArcGIS API for JavaScript, ReactJS, and backend technologies. Passionate about geospatial innovation and delivering intuitive solutions!
+    </div>
+  </section>
+  <section id="skills">
+    <h2 class="section-title"><i class="fas fa-map"></i> Skills</h2>
+    <div class="skills-marquee">
+      <div class="marquee-content">
+        <a href="https://developers.arcgis.com/javascript/" target="_blank" class="skill-logo">
+          <img src="./imgs/arcgisjs.png" alt="ArcGIS" />
+        </a>
+        <a href="https://www.oracle.com/database/" target="_blank" class="skill-logo">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg" alt="Oracle" />
+        </a>
+        <a href="https://reactjs.org/docs/getting-started.html" target="_blank" class="skill-logo">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="ReactJS" />
+        </a>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" class="skill-logo">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript" />
+        </a>
+        <a href="https://enterprise.arcgis.com/en/" target="_blank" class="skill-logo">
+          <img src="https://enterprise.arcgis.com/assets/images/enterprise-logo.png" alt="ArcGIS Server" />
+        </a>
+      </div>
+    </div>
+  </section>
+  <section class="experience-section" id="experience">
+    <h2 class="section-title"><i class="fas fa-briefcase"></i> Experience</h2>
+    <div class="timeline-container">
+      <div class="timeline-row">
+        <div class="timeline-header">
+          <div class="date" style="color: limegreen;">2023 - ∞</div>
+          <div class="company">Digital New Era</div>
+          <div class="role">Founder</div>
+          <button class="toggle-btn"><i class="fas fa-plus"></i></button>
+        </div>
+        <div class="timeline-details">
+          <p>Founded Digital New Era to build innovative digital solutions and tools for the modern web.</p>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-header">
+          <div class="date" style="color: goldenrod;">2022-2024</div>
+          <div class="company">Netnation</div>
+          <div class="role">Team Lead</div>
+          <button class="toggle-btn"><i class="fas fa-plus"></i></button>
+        </div>
+        <div class="timeline-details">
+          <p>Led a cross-functional team managing large-scale WordPress hosting platforms and services.</p>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-header">
+          <div class="date" style="color: indianred;">2020-2022</div>
+          <div class="company">Netnation</div>
+          <div class="role">WordPress Developer</div>
+          <button class="toggle-btn"><i class="fas fa-plus"></i></button>
+        </div>
+        <div class="timeline-details">
+          <p>Developed and maintained customized WordPress themes and plugins for enterprise clients.</p>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-header">
+          <div class="date" style="color: rebeccapurple;">2019-2020</div>
+          <div class="company">Performalis</div>
+          <div class="role">Junior Webmaster</div>
+          <button class="toggle-btn"><i class="fas fa-plus"></i></button>
+        </div>
+        <div class="timeline-details">
+          <p>Assisted in website updates, SEO optimization, and regular content maintenance tasks.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="contact">
+    <h2 class="section-title"><i class="fas fa-envelope"></i> Contact</h2>
+    <div style="text-align: center; display: flex; justify-content: center; gap: 2rem; align-items: center; margin-top: 1rem;">
+      <a href="mailto:alif.rdb@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+      <a href="https://www.linkedin.com/in/alif-shaikh-90167a4b/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://x.com/aliftweet" target="_blank" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+    </div>
+  </section>
+  <footer>
+    <p>Made with 💛 by Alif Shaikh</p>
+  </footer>
+</main>
+<!-- Comic Style Theme Toggle Button -->
+<button class="toggle-btn theme-toggle" onclick="toggleDarkMode()">
+  <i class="fas fa-moon"></i>
+</button>
+<script>
+function downloadPortfolio() {
+  html2canvas(document.querySelector("#portfolio")).then(canvas => {
+    const link = document.createElement('a');
+    link.download = 'portfolio.jpg';
+    link.href = canvas.toDataURL('image/jpeg');
+    link.click();
+  });
+}
+function toggleDarkMode() {
+  const body = document.body;
+  const nav = document.querySelector('nav');
+  const cards = document.querySelectorAll('.card');
+  const footer = document.querySelector('footer');
+  const toggleBtn = document.querySelector('.theme-toggle');
+  // Toggle dark mode class
+  body.classList.toggle('dark-mode');
+  nav.classList.toggle('dark-mode');
+  footer.classList.toggle('dark-mode');
+  cards.forEach(card => card.classList.toggle('dark-mode'));
+  // Section and timeline dark mode
+  document.querySelectorAll('section').forEach(sec => sec.classList.toggle('dark-mode'));
+  document.querySelectorAll('.timeline-row').forEach(row => row.classList.toggle('dark-mode'));
+  document.querySelectorAll('.timeline-header').forEach(h => h.classList.toggle('dark-mode'));
+  document.querySelectorAll('.timeline-details').forEach(d => d.classList.toggle('dark-mode'));
+  document.querySelectorAll('.toggle-btn').forEach(btn => btn.classList.toggle('dark-mode'));
+  document.querySelectorAll('.skills-marquee').forEach(mq => mq.classList.toggle('dark-mode'));
+  document.querySelectorAll('.skill-logo img').forEach(img => img.classList.toggle('dark-mode'));
+  document.querySelectorAll('.comic-bubble').forEach(bub => bub.classList.toggle('dark-mode'));
+  // Change icon
+  const icon = toggleBtn.querySelector('i');
+  if (body.classList.contains('dark-mode')) {
+    icon.classList.remove('fa-moon');
+    icon.classList.add('fa-sun');
+  } else {
+    icon.classList.remove('fa-sun');
+    icon.classList.add('fa-moon');
+  }
+}
+// Timeline toggle
+document.querySelectorAll('.timeline-row .toggle-btn').forEach(button => {
+  button.addEventListener('click', function(e) {
+    e.stopPropagation();
+    const details = button.closest('.timeline-row').querySelector('.timeline-details');
+    const icon = button.querySelector('i');
+    if (details.style.display === 'block') {
+      details.style.display = 'none';
+      icon.classList.remove('fa-minus');
+      icon.classList.add('fa-plus');
+    } else {
+      details.style.display = 'block';
+      icon.classList.remove('fa-plus');
+      icon.classList.add('fa-minus');
+    }
+  });
+});
+</script>
+</body>
+</html>
